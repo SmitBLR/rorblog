@@ -1,0 +1,4 @@
+$("#tag_<%= @tag_name %>").slideToggle("slow");
+$("#name").val('');
+var tag_names_div = $("#article_tag_names");
+tag_names_div.val(tag_names_div.val().replace("<%= @tag_name %>", "").replace("  ", " "));

@@ -1,0 +1,10 @@
+<div id="tag_<%= tag_name %>" class="tag">
+  <blockquote class="tag_block">
+    <%= link_to(
+                tag_name.capitalize,
+                { :controller => :tags, :action => :remove, :name => tag_name },
+                :title => "Click for remove",
+                :remote => true
+    )%>
+  </blockquote>
+</div>

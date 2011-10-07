@@ -1,0 +1,19 @@
+<%= form_for [comment.commentable, comment], :remote => true do |f| %>
+<% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p class="comment-form-comment">
+      <%= f.text_area :comment, :cols => 45, :rows => 8 %>
+    </p>
+    <p class="form-submit">
+        <%= f.submit "Leave a comment" %>
+    </p>
+<% end %>

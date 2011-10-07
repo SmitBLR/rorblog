@@ -1,0 +1,9 @@
+<% if @tag_name and not @tag_name.empty? %>
+    <% @tag_name.split.each do |name| %>
+        $("#tags").append("<%= escape_javascript(render "tags/show", :tag_name => name) %>");
+        $("#tag_<%= name %>").hide().slideToggle("slow");
+    <% end %>
+    $("#name").val('');
+    var tag_names_div = $("#article_tag_names");
+    tag_names_div.val(tag_names_div.val() + " <%= @tag_name %>");
+<% end %>

@@ -1,0 +1,32 @@
+<div class="postwrap commentswrap">
+  <div class="hentry">
+    <div class="copy">
+      <div id="comments">
+        <h3 id="comments-title">
+          <%= @article.comments.count %> Responses to
+          <em><%= @article.title %></em>
+        </h3>
+        <% @even = true %>
+        <ol class="commentlist" id="comment_list">
+          <%= render :partial => "comments/show",
+                     :collection => @article.comments,
+                     :as => 'comment' %>
+        </ol>
+
+        <div id="respond">
+          <% if can? :create, Comment %>
+              <h3 id="reply-title">Leave Reply</h3>
+              <div id="comment_form">
+                <%= render "comments/form", :comment => @article.comments.build %>
+              </div>
+          <% else %>
+            <h3 id="comments-title" style="width: 350px;">
+              Sign in for post comment
+              <%= render "shared/social_login_buttons" %>
+            </h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div id="maincontent">
+  <div id="content">
+    <% @articles.each do |article| %>
+        <div class="postwrap fix">
+          <div class="post-14 post type-post status-publish format-standard hentry category-uncategorized tag-wordpress">
+            <div class="copy fix">
+              <div class="post-header fix post-nothumb">
+                <div class="post-title-selection fix">
+                  <div class="post-title fix">
+                    <h2>
+                      <%= link_to article.title, article %>
+                    </h2>
+                    <div class="metabar">
+                      <em>
+                        On <%= article.created_at %>
+                      </em>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="copy fix">
+              <div class="textcontent">
+                <%= raw article.content %>
+                <div class="clear"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="hl"></div>
+            <div class="post-footer">
+              <div class="left">
+                <span><%= article.comments.count %></span>
+                <%= link_to "Comments", article_path(article) + "#comments" %>
+              </div>
+              <% if can?(:manage, article) %>
+                  <div style="position: absolute; padding-left: 283px; padding-top: 15px;">
+                    <%= link_to 'Edit', edit_article_path(article) %> |
+                    <%= link_to 'Destroy', article, confirm: 'Are you sure?', method: :delete %>
+                  </div>
+              <% end %>
+              <div class="right">
+                <span>
+                  <%= link_to "Leave A Response", article_path(article) + "#respond" %>
+                </span>
+              </div>
+              <br class="fix">
+            </div>
+          </div>
+        </div>
+        <%= render "tagged_with", :tags => article.tags %>
+        <div class="clear"></div>
+    <% end %>
+    <div class="post_nav">
+      <%= will_paginate @articles, :inner_window => 1, :outer_window => 2 %>
+    </div>
+  </div>
+</div>
+<div id="sidebar">
+  <div id="dtags" class="widget_tag widget">
+    <div class="winner">
+      <h3 class="wtitle">Tags</h3>
+      <% Tag.all(:limit => 100).each do |tag| %>
+          <%= link_to tag.name, articles_path(:tag_id => tag), :style => "color: #0088CC;" %>
+      <% end %>
+    </div>
+  </div>
+  <% if can? :read, Link %>
+    <div id="dlinks" class="widget_links widget">
+        <div class="winner">
+          <h3 class="wtitle">Links</h3>
+          <%= render 'shared/external_links' %>
+        </div>
+    </div>
+  <% end %>
+  <div id="dmeta" class="widget_meta widget">
+    <div class="winner">
+      <h3 class="wtitle">Meta</h3>
+      <ul>
+        <li>
+          <%= render "admins/shared/session_links" %>
+        </li>
+        <li>
+          <%= link_to "Entries RSS", articles_path + ".xml" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

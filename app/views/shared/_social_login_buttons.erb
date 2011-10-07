@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+    <div class="nav-icon">
+      Welcome <%= link_to current_user.name, current_user.link %>.
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    </div>
+<% else %>
+    <div class="nav-icon">
+      <%= link_to(image_tag("facebook.png"), user_omniauth_authorize_path(:facebook)) %>
+    </div>
+    <div class="nav-icon">
+      <%= link_to(image_tag("twitter.png"), user_omniauth_authorize_path(:twitter)) %>
+    </div>
+<% end %>

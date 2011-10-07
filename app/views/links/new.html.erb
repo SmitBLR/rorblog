@@ -1,0 +1,32 @@
+<div class="postwrap fix">
+  <div class="post-25 page type-page status-publish hentry">
+    <div class="copy fix">
+      <div class="field"><h2>New link</h2></div>
+      <div class="field">
+        <%= form_for @link do |f| %>
+            <div class="errors">
+              <% if @link.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+                    <ul>
+                      <% @link.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+            </div>
+          <div><%= f.label :title %></div>
+          <div><%= f.text_field :title %></div>
+          <div><%= f.label :url %></div>
+          <div><%= f.text_field :url %></div>
+          <p><%= f.submit %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post_nav">
+    <%= link_to 'Back', articles_path %>
+</div>

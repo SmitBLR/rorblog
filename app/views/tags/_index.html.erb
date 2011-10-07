@@ -1,0 +1,11 @@
+<div>
+    <div id="tags">
+        <%= render :partial => "tags/show", :collection => @article.tags.collect { |tag| tag.name }, :as => :tag_name %>
+    </div>
+    <div>
+        <%= form_tag({ :controller => :tags, :action => :append, :article_id => @article }, :remote => true) do %>
+            <div class="field"><%= text_field_tag :name, "", :size => "35%" %></div>
+            <div class="field"><%= submit_tag "Append tag" %></div>
+        <% end %>
+    </div>
+</div>

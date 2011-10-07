@@ -1,0 +1,5 @@
+<% if admin_signed_in? %>
+    <%= link_to'Logout admin', destroy_admin_session_path, :method => :delete %>
+<% else %>
+    <%= link_to "Login admin", new_admin_session_path %>
+<% end %>

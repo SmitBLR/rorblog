@@ -1,0 +1,36 @@
+<li class="comment <%= !(@even = !@even) ? "even thread-even" : "odd alt thread-odd" %> depth-1" id="<%= dom_id comment %>">
+  <div class="comment-body">
+    <div class="comment-author vcard">
+      <%
+         avatar_url = root_path + "assets/admin.png"
+         avatar_url = root_path + "assets/" + comment.user.service_type + ".png" if comment.user
+         %>
+      <%= image_tag avatar_url, :height => "32", :width => "32", :class => "avatar avatar32 photo" %>
+      <cite class="fn">
+        <%= comment.user ? (link_to_if(comment.user.link, comment.user.name, comment.user.link)) : "Admin" %>
+      </cite>
+      <span class="says">says:</span>
+    </div>
+    <div class="comment-meta commentmetadata">
+      <%= time_ago_in_words comment.created_at %> ago
+    </div>
+    <p>
+        <%= link_to_if(
+                    can?(:update, comment),
+                    comment.comment,
+                    edit_article_comment_path(comment.commentable, comment),
+                    :remote => true,
+                    :title => "click for edit"
+            ) %>
+    </p>
+    <div class="delete_comment_link">
+      <%= link_to(
+              "Delete",
+              article_comment_path(comment.commentable, comment),
+              :method => :delete ,
+              :confirm => 'Are you sure?',
+              :remote => true
+          ) if can? :delete, comment %>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,26 @@
+<div class="postwrap fix">
+  <div class="post-25 page type-page status-publish hentry">
+    <div class="copy fix">
+      <div class="pagetittle">
+        <h2><%= @article.title %></h2>
+      </div>
+      <div class="pagecontent">
+        <%= raw @article.content %>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+
+<%= render 'tagged_with', :tags => @article.tags %>
+
+<%= render "comments/index" %>
+
+<div class="post_nav">
+  <% if can? :manage, @article %>
+    <%= link_to 'Edit Article', edit_article_path(@article) %> |
+    <%= link_to 'Destroy Article', @article, confirm: 'Are you sure?', method: :delete %> |
+  <% end %>
+  <%= link_to 'Back', articles_path %>
+</div>

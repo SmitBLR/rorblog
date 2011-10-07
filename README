@@ -1,0 +1,4 @@
+Ruby On Rails test blog
+
+Installation:
+    run "rake db:seed" for creating admin with email: admin@test.com and password: secret

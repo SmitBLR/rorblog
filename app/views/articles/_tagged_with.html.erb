@@ -1,0 +1,11 @@
+<div class="tags">
+  <% unless tags.empty? %>
+      Tagged with
+      <% first = true %>
+      <% tags.each do |tag| %>
+          <%= if first then ": " else " • " end %>
+          <% first = false %>
+          <%= link_to tag.name.capitalize, articles_path(tag_id: tag) %>
+      <% end %>
+  <% end %>
+</div>

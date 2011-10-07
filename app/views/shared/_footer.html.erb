@@ -1,0 +1,51 @@
+<div id="footer">
+  <div class="effect">
+    <div class="content">
+      <div id="fcolumns_container" class="fix">
+        <div class="fcol">
+          <div class="fcol_pad">
+            <h3 class="footer-site-title">
+              <%= link_to "Ruby on Rails Blog", root_url %>
+            </h3>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="fcol_pad">
+            <h3 class="links_title">Administration</h3>
+            <ul>
+              <li><%= render "admins/shared/session_links" %></li>
+              <% if admin_signed_in? %>
+                <li><%= link_to "New article", new_article_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="fcol_pad">
+            <h3>Social networks login</h3>
+            <div class="social_at_footer">
+              <%= render "shared/social_login_buttons" %>
+            </div>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="fcol_pad">
+            <h3 class="links_title">
+              Links
+            </h3>
+            <%= render "shared/external_links" %>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="fcol_pad">
+            <span class="terms">
+              © 2011 RoR test project
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

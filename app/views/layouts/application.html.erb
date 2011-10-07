@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PowerMeMobileBlog</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="home blog">
+  <div id="page" class="fix">
+    <div id="wrapper" class="fix">
+      <div id="header" class="fix">
+        <h1 id="blogtitle">
+          <%= link_to "Ruby on Rails Blog", root_path %>
+        </h1>
+        <div id="blogdescription">test task for PowerMeMobile job</div>
+        <div class="icons">
+          <div class="nav-icon">
+            <%= link_to(image_tag("rss.png"), articles_url + ".xml") %>
+          </div>
+          <%= render "shared/social_login_buttons" %>
+        </div>
+      </div>
+
+      <div id="nav" class="fix">
+        <ul class="fix homebutton">
+          <li class="page_item nav_first">
+            <%= link_to "Home", root_url, :class => "home", :title => "home", :style => "background-image: url('" + root_url + "assets/home-icon-trans.png');" %>
+          </li>
+        </ul>
+          <%= render "shared/nav" %>
+        <div class="clear"></div>
+      </div>
+
+      <div id="container" class="fix">
+        <%= yield %>
+      </div>
+      <div class="clear"></div>
+
+      <%= render "shared/footer" %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<%= javascript_include_tag "../javascripts/ckeditor/ckeditor.js" %>
+<div id="maincontent">
+  <div id="content">
+    <div class="postwrap fix">
+      <div class="post-14 post type-post status-publish format-standard hentry category-uncategorized tag-wordpress">
+        <div class="copy fix">
+          <%= form_for(@article) do |f| %>
+              <% if @article.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+                    <ul>
+                      <% @article.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+              <div class="field">
+                <%= f.label :title %><br />
+                <%= f.text_field :title, :size => "93%" %>
+              </div>
+              <div class="field">
+                <%= f.label :content %><br />
+                <%= f.cktext_area :content %>
+              </div>
+              <div class="field">
+                <%= f.hidden_field :tag_names %>
+              </div>
+              <div style="height: 10px"></div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div style="height: 10px"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div id="sidebar">
+  <div id="dtags" class="widget_tag widget">
+    <div class="winner">
+      <h3 class="wtitle">Tags for this article</h3>
+      <%= render "tags/index" %>
+    </div>
+  </div>
+</div>

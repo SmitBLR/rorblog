@@ -1,0 +1,13 @@
+<ul>
+  <% Link.all.each do |link| %>
+      <li>
+        <%= link_to link.title, link.url %>
+        <% if can? :delete, link %>
+            <%= link_to "x", link, :method => :delete, :confirm => "Are you sure?" %>
+        <% end %>
+      </li>
+  <% end %>
+  <% if can? :create, Link %>
+      <b><%= link_to "New Link", new_link_path %></b>
+  <% end %>
+</ul>
